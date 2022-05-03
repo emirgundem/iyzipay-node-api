@@ -1,4 +1,5 @@
 import Iyzipay from "iyzipay"
+import * as Installments from "./methods/installments.js"
 import * as Cards from "./methods/cards.js"
 import nanoid from '../../utils/nanoid.js'
 import * as Logs from '../../utils/logs.js'
@@ -87,9 +88,32 @@ const deleteCardOfAUser = () => {
 }
 
 //deleteCardOfAUser();
-readCardOfUser();
+//readCardOfUser();
 
 
 //createUserAndCards();
 //createCardForUser();
+
+
+/*******************************INSTALLMENTS*****************************************/
+
+const checkInstallments = () => {
+    return Installments.checkInstallments({
+        locale : Iyzipay.LOCALE.TR,
+        conversationId : nanoid(),
+        binNumber:"552879",
+        price:"1000",
+
+    }).then((result)=>{
+        console.log(result);
+        Logs.logFile('5-installments- bir-kart-ve ücret taksitlendirme ',result);
+    }).catch((err)=>{
+        console.log(err)
+        Logs.logFile('5-installments- bir-kart-ve-ücret-taksitlendirme-hata',err);
+    })
+}
+
+
+
+checkInstallments();
 

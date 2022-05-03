@@ -1,0 +1,27 @@
+{
+    "status": "success",
+    "locale": "tr",
+    "systemTime": 1651591106851,
+    "conversationId": "NYebjphdobl2alnfbZ8H",
+    "installmentDetails": [
+        {
+            "binNumber": "552879",
+            "price": 1000,
+            "cardType": "CREDIT_CARD",
+            "cardAssociation": "MASTER_CARD",
+            "cardFamilyName": "Paraf",
+            "force3ds": 0,
+            "bankCode": 12,
+            "bankName": "Halk Bankası",
+            "forceCvc": 0,
+            "commercial": 1,
+            "installmentPrices": [
+                {
+                    "installmentPrice": 1000,
+                    "totalPrice": 1000,
+                    "installmentNumber": 1
+                }
+            ]
+        }
+    ]
+}

@@ -1,8 +1,8 @@
 import iyzipay from "../connection/iyzipay";
 
-export const checkInstallment = (data) =>{
+export const checkInstallments = (data) =>{
     return new Promise((resolve,reject)=>{
-        iyzipay.InstallementInfo.retrieve(data,(err,result)=>{
+        iyzipay.installmentInfo.retrieve(data,(err,result)=>{
             if(err) {
                 reject(err)
             }
