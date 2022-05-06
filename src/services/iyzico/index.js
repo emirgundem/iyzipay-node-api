@@ -1,6 +1,7 @@
-import Iyzipay from "iyzipay"
+import Iyzipay, { CURRENCY } from "iyzipay"
 import * as Installments from "./methods/installments.js"
 import * as Cards from "./methods/cards.js"
+import * as Payments from "../iyzico/methods/payment"
 import nanoid from '../../utils/nanoid.js'
 import * as Logs from '../../utils/logs.js'
 
@@ -113,7 +114,98 @@ const checkInstallments = () => {
     })
 }
 
+//checkInstallments();
 
 
-checkInstallments();
+//Normal Ödeme
 
+const createPayment = () => {
+    return Payments.createPayment({
+
+        locale : Iyzipay.LOCALE.TR,
+        conversationId : nanoid(),
+        price : "300",
+        paidPrice : "300",
+        currency : CURRENCY.TRY,
+        installment:"1",
+        basketId : "B4TYUSW",
+        paymentChannel : Iyzipay.PAYMENT_CHANNEL.WEB,
+        paymentGroup : Iyzipay.PAYMENT_GROUP.PRODUCT,
+        paymentCard : {
+            cardAlias: "Kredi Kartım",
+            cardHolderName: "John Doe",
+            cardNumber: "5528790000000008",
+            expireMonth: "12",
+            expireYear: "2030",
+            cvc :'123',
+            registerCard: '0'
+        },
+        buyer : {
+            id:'SDFJKL',
+            name :'John',
+            surname : 'Doe',
+            gsmNumber : '05385194056',
+            email:'email@email.com',
+            identityNumber : '00000000000',
+            lastLoginDate:'2022-05-04 20:14: 35',
+            registarionDate : '2022-01-04 19:14: 35',
+            registrationAddress : 'Nidakule göztepe Merdivenköy mah Bora sokak no : 1',
+            ip:"85.34.78.112",
+            city:'Istanbul',
+            country : 'Turkey',
+            zipCode : '34732',
+        },
+        shippingAddress : {
+            contactName : 'John Doe',
+            city:'Istanbul',
+            country:'Turkey',
+            address : 'Nidakule göztepe, Merdivenköy mah Bora sokak no : 1',
+            zipCode : '34732',
+        },
+
+        billingAddress: {
+            contactName : 'John Doe',
+            city:'Istanbul',
+            country:'Turkey',
+            address : 'Nidakule göztepe, merdivenköy mah Bora sok no : 1'
+        },
+
+        basketItems : [{
+            id:'BT101',
+            name : 'İphone 12 Pro',
+            category1 : 'Telefonlar',
+            category1 : 'İOS Telefonlar',
+            itemType : Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+            price : 90
+        },
+        {
+            id:'BT102',
+            name : 'İphone 13 mini',
+            category1 : 'Telefonlar',
+            category1 : 'İOS Telefonlar',
+            itemType : Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+            price : 150,
+        },
+
+        {
+            id:'BT103',
+            name : 'İphone 8 Plus',
+            category1 : 'Telefonlar',
+            category1 : 'İOS Telefonlar',
+            itemType : Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+            price : 60
+        }
+    ]
+    })
+
+    .then((result)=>{
+        console.log(result)
+        Logs.logFile('6- Yeni bir kartla ödeme al ve kartı kaydetme',result)
+    }).catch((err)=>{
+        console.log(err)
+        Logs.logFile('6- Yeni bir kartla ödeme al ve kartı kaydetme - Hata',err)
+    })
+}
+
+
+createPayment();
