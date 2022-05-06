@@ -1,10 +1,21 @@
 {
     "status": "success",
     "locale": "tr",
-    "systemTime": 1651350489477,
-    "conversationId": "TsNzKr3RkBmObfyZe2Ss",
+    "systemTime": 1651825265015,
+    "conversationId": "ZRfgiz8gUgKYr1BzYoh5",
     "cardUserKey": "IsVS4wxwo3OhVWFYdIouWopNMtk=",
     "cardDetails": [
+        {
+            "cardToken": "6Jtaj/4iNHadcPz4vKmZfhrV210=",
+            "cardAlias": "Kredi Kartım Ödemeden Sonra",
+            "binNumber": "552879",
+            "lastFourDigits": "0008",
+            "cardType": "CREDIT_CARD",
+            "cardAssociation": "MASTER_CARD",
+            "cardFamily": "Paraf",
+            "cardBankCode": 12,
+            "cardBankName": "Halk Bankası"
+        },
         {
             "cardToken": "oh9U5ApVGZzcT4bpWxvmukgtS1Y=",
             "cardAlias": "Kredi Kartım",
