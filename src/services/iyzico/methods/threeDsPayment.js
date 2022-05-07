@@ -14,7 +14,7 @@ export const initThreeDsPayment = (data) => {
      })
 }
 
-export const completePayment = () => {
+export const completeThreeDsPayment = () => {
     return new Promise((resolve,reject)=>{
         iyzipay.threedsPayment.create(data,(err,result)=> {
             if(err) {
@@ -26,6 +26,8 @@ export const completePayment = () => {
         })
     })
 }
+
+
 
 
 
