@@ -479,6 +479,11 @@ const initializeThreeDSPayments = () => {
 const completeThreeDsPayment = () => {
     return ThreeDsPayment.completeThreeDsPayment({
 
+        locale : Iyzipay.LOCALE.TR,
+        conversationId : nanoid(),
+        paymentId : '17504960',
+        conversationData : "conversation data"
+
     }).then((result)=>{
         console.log(result)
         Logs.logFile('10-3DS ödeme tamamla',result)
@@ -489,3 +494,185 @@ const completeThreeDsPayment = () => {
 }
 
 
+//completeThreeDsPayment();
+
+const initializeThreeDSPaymentsWithRegisteredCard = () => {
+    return ThreeDsPayment.initThreeDsPayment({
+      locale: Iyzipay.LOCALE.TR,
+      conversationId: nanoid(),
+      price: "300",
+      paidPrice: "300",
+      currency: CURRENCY.TRY,
+      installment: "1",
+      basketId: "B4TYUSW",
+      paymentChannel: Iyzipay.PAYMENT_CHANNEL.WEB,
+      paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,
+      callbackUrl: "https://localhost/api/payment/3ds/complete",
+  
+      paymentCard: {
+        cardUserKey: "IsVS4wxwo3OhVWFYdIouWopNMtk=",
+        cardToken: "6Jtaj/4iNHadcPz4vKmZfhrV210=",
+      },
+      buyer: {
+        id: "SDFJKL",
+        name: "John",
+        surname: "Doe",
+        gsmNumber: "05385194056",
+        email: "email@email.com",
+        identityNumber: "00000000000",
+        lastLoginDate: "2022-05-04 20:14: 35",
+        registarionDate: "2022-01-04 19:14: 35",
+        registrationAddress: "Nidakule göztepe Merdivenköy mah Bora sokak no : 1",
+        ip: "85.34.78.112",
+        city: "Istanbul",
+        country: "Turkey",
+        zipCode: "34732",
+      },
+      shippingAddress: {
+        contactName: "John Doe",
+        city: "Istanbul",
+        country: "Turkey",
+        address: "Nidakule göztepe, Merdivenköy mah Bora sokak no : 1",
+        zipCode: "34732",
+      },
+  
+      billingAddress: {
+        contactName: "John Doe",
+        city: "Istanbul",
+        country: "Turkey",
+        address: "Nidakule göztepe, merdivenköy mah Bora sok no : 1",
+      },
+  
+      basketItems: [
+        {
+          id: "BT101",
+          name: "İphone 12 Pro",
+          category1: "Telefonlar",
+          category1: "İOS Telefonlar",
+          itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+          price: 90,
+        },
+        {
+          id: "BT102",
+          name: "İphone 13 mini",
+          category1: "Telefonlar",
+          category1: "İOS Telefonlar",
+          itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+          price: 150,
+        },
+  
+        {
+          id: "BT103",
+          name: "İphone 8 Plus",
+          category1: "Telefonlar",
+          category1: "İOS Telefonlar",
+          itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+          price: 60,
+        },
+      ],
+    })
+      .then((result) => {
+        console.log(result);
+        Logs.logFile("11- kayıtlı bir kart 3ds ile ödeme", result);
+      })
+      .catch((err) => {
+        console.log(err);
+        Logs.logFile("11- kayıtlı bir kart 3ds ile ödeme -hata", err);
+      });
+  };
+
+  //initializeThreeDSPaymentsWithRegisteredCard();
+
+
+  const initializeThreeDSPaymentsWithNewCardAndRegister = () => {
+    return ThreeDsPayment.initThreeDsPayment({
+        locale: Iyzipay.LOCALE.TR,
+        conversationId: nanoid(),
+        price: "300",
+        paidPrice: "300",
+        currency: CURRENCY.TRY,
+        installment: "1",
+        basketId: "B4TYUSW",
+        paymentChannel: Iyzipay.PAYMENT_CHANNEL.WEB,
+        paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,
+        callbackUrl: "https://localhost/api/payment/3ds/complete",
+
+        paymentCard: {
+            cardUserKey: "IsVS4wxwo3OhVWFYdIouWopNMtk=",
+            cardAlias: "Kredi Kartım Ödemeden Sonra",
+            cardHolderName: "John Doe",
+            cardNumber: "5528790000000008",
+            expireMonth: "12",
+            expireYear: "2030",
+            cvc: "123",
+            registerCard: "1",
+          },
+        buyer: {
+          id: "SDFJKL",
+          name: "John",
+          surname: "Doe",
+          gsmNumber: "05385194056",
+          email: "email@email.com",
+          identityNumber: "00000000000",
+          lastLoginDate: "2022-05-04 20:14: 35",
+          registarionDate: "2022-01-04 19:14: 35",
+          registrationAddress: "Nidakule göztepe Merdivenköy mah Bora sokak no : 1",
+          ip: "85.34.78.112",
+          city: "Istanbul",
+          country: "Turkey",
+          zipCode: "34732",
+        },
+        shippingAddress: {
+          contactName: "John Doe",
+          city: "Istanbul",
+          country: "Turkey",
+          address: "Nidakule göztepe, Merdivenköy mah Bora sokak no : 1",
+          zipCode: "34732",
+        },
+    
+        billingAddress: {
+          contactName: "John Doe",
+          city: "Istanbul",
+          country: "Turkey",
+          address: "Nidakule göztepe, merdivenköy mah Bora sok no : 1",
+        },
+    
+        basketItems: [
+          {
+            id: "BT101",
+            name: "İphone 12 Pro",
+            category1: "Telefonlar",
+            category1: "İOS Telefonlar",
+            itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+            price: 90,
+          },
+          {
+            id: "BT102",
+            name: "İphone 13 mini",
+            category1: "Telefonlar",
+            category1: "İOS Telefonlar",
+            itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+            price: 150,
+          },
+    
+          {
+            id: "BT103",
+            name: "İphone 8 Plus",
+            category1: "Telefonlar",
+            category1: "İOS Telefonlar",
+            itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+            price: 60,
+          },
+        ],
+      })
+        .then((result) => {
+          console.log(result);
+          Logs.logFile("11- kayıtlı bir kart 3ds ile ödeme", result);
+        })
+        .catch((err) => {
+          console.log(err);
+          Logs.logFile("11- kayıtlı bir kart 3ds ile ödeme -hata", err);
+        });
+  }
+
+  initializeThreeDSPaymentsWithNewCardAndRegister()
