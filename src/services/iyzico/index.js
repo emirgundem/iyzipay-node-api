@@ -797,8 +797,8 @@ const cancelPayment = () =>{
         conversationId : nanoid(),
         paymentId : '17516513',
         ip: '85.34.78.112',
-
-
+        reason : Iyzipay.REFUND_REASON.BUYER_REQUEST,
+        description : 'Kullanıcı isteği ile iptal edildi.'
 
     })
     .then((result)=>{
@@ -811,6 +811,34 @@ const cancelPayment = () =>{
     })
 }
 
-cancelPayment();
+//cancelPayment();
+
+
+const cancelPaymentRefundReason = () =>{
+    CancelPayment.cancelPayment({
+
+        locale : Iyzipay.LOCALE.TR,
+        conversationId : nanoid(),
+        paymentId : '17516513',
+        ip: '85.34.78.112',
+        reason : Iyzipay.REFUND_REASON.BUYER_REQUEST,
+        description : 'Kullanıcı isteği ile iptal edildi.'
+
+    })
+    .then((result)=>{
+        console.log(result);
+        Logs.logFile('14- Kullanıcı isteği ile Ödeme iptali',result)
+    })
+    .catch((err)=>{
+        console.log(err);
+        Logs.logFile('14- Kullanıcı isteği ile Ödeme iptali -Hata',err);
+    })
+}
+
+cancelPaymentRefundReason();
+
+
+
+
 
 
