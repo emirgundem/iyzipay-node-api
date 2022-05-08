@@ -5,6 +5,7 @@ import * as Payments from "../iyzico/methods/payment";
 import * as ThreeDsPayment from "../iyzico/methods/threeDsPayment";
 import * as Checkouts from '../iyzico/methods/checkouts'
 import * as CancelPayment from '../iyzico/methods/cancelPayment'
+import * as RefundPayment from '../iyzico/methods/refundPayments'
 import nanoid from "../../utils/nanoid.js";
 import * as Logs from "../../utils/logs.js";
 
@@ -819,7 +820,7 @@ const cancelPaymentRefundReason = () =>{
 
         locale : Iyzipay.LOCALE.TR,
         conversationId : nanoid(),
-        paymentId : '17516513',
+        paymentId : '17505032',
         ip: '85.34.78.112',
         reason : Iyzipay.REFUND_REASON.BUYER_REQUEST,
         description : 'Kullanıcı isteği ile iptal edildi.'
@@ -827,15 +828,40 @@ const cancelPaymentRefundReason = () =>{
     })
     .then((result)=>{
         console.log(result);
-        Logs.logFile('14- Kullanıcı isteği ile Ödeme iptali',result)
+        Logs.logFile('15- Kullanıcı isteği ile Ödeme iptali',result)
     })
     .catch((err)=>{
         console.log(err);
-        Logs.logFile('14- Kullanıcı isteği ile Ödeme iptali -Hata',err);
+        Logs.logFile('15- Kullanıcı isteği ile Ödeme iptali -Hata',err);
     })
 }
 
-cancelPaymentRefundReason();
+//cancelPaymentRefundReason();
+
+
+const refundPayment = () => {
+    return RefundPayment.refundPayment({
+         locale : Iyzipay.LOCALE.TR,
+         conversationId : nanoid(),
+         paymentTransactionId : '18715826',
+         ip : '85.34.78.112',
+         price : '50',
+         currency : Iyzipay.CURRENCY.TRY,
+
+    })
+    .then((result)=>{
+        console.log(result);
+        Logs.logFile('16- İade etme işlemi',result);
+
+    })
+    .catch((err)=>{
+        console.log(err)
+        Logs.logFile('16- İade etme işlemi - Hata');
+    })
+}
+refundPayment();
+
+
 
 
 
