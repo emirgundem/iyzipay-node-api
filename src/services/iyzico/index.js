@@ -839,6 +839,7 @@ const cancelPaymentRefundReason = () =>{
 //cancelPaymentRefundReason();
 
 
+
 const refundPayment = () => {
     return RefundPayment.refundPayment({
          locale : Iyzipay.LOCALE.TR,
@@ -847,6 +848,8 @@ const refundPayment = () => {
          ip : '85.34.78.112',
          price : '50',
          currency : Iyzipay.CURRENCY.TRY,
+         reason : Iyzipay.REFUND_REASON.BUYER_REQUEST,
+         description : 'Kullanıcı iade talebi'
 
     })
     .then((result)=>{
@@ -859,7 +862,8 @@ const refundPayment = () => {
         Logs.logFile('16- İade etme işlemi - Hata');
     })
 }
-refundPayment();
+
+//refundPayment();
 
 
 
