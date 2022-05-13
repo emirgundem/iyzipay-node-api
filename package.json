@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/services/iyzico/index.js",
+    "start": "babel-node src/database/db.js",
     "dev": "babel src --out-dir=./build --copy-files --watch",
     "build": "babel src --out-dir=./build --copy-files"
   },
